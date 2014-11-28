@@ -44,7 +44,9 @@ gulp.task('vendors', function() {
       'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js',
       'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js',
       'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js',
-      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js'
+      'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js',
+      'bower_components/chosen/chosen.jquery.min.js',
+      'bower_components/typeahead.js/dist/typeahead.bundle.min.js'
     ])
     .pipe($.concat('vendors.min.js'))
     .pipe($.uglify())
@@ -57,6 +59,7 @@ gulp.task('vendors', function() {
    */
   gulp.src([
       'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
+      'bower_components/font-awesome/fonts/*',
       'assets/fonts/*'
     ])
     .pipe(gulp.dest('build/fonts'));
@@ -72,6 +75,16 @@ gulp.task('vendors', function() {
     .pipe($.concat('polyfills.min.js'))
     .pipe($.uglify())
     .pipe(gulp.dest('build/js'));
+
+  /**
+   * POLYFILLS SOURCES
+   * Various polyfills required for old IE
+   */
+  gulp.src([
+      'bower_components/chosen/chosen-sprite.png',
+      'bower_components/chosen/chosen-sprite@2x.png'
+    ])
+    .pipe(gulp.dest('build/css'));
 });
 
 /**
@@ -89,6 +102,7 @@ gulp.task('img', function() {
  * With error reporting on compiling (so that there's no crash)
  */
 gulp.task('styles', function() {
+  argv.production = true; // always compile for production, because bower
   if (argv.production) { console.log('[styles] Processing styles for production env.' ); }
   else { console.log('[styles] Processing styles for dev env. No minifying here, for sourcemaps!') }
   return gulp.src('assets/sass/main.scss')
@@ -170,13 +184,13 @@ gulp.task('serve', ['styles', 'scripts', 'twig'], function () {
   gulp.watch(['assets/js/**/*.js'], function() {
     runSequence('scripts', reload);
   });
-  
+
   gulp.watch(['assets/pages/**/*'], function() {
     // clean folder before compiling
     del.bind(null, ['styleguide/pages'])
     runSequence('twig', reload);
   });
-  
+
 });
 
 /**
