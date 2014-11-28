@@ -46,5 +46,8 @@
 @import 'javascript/tooltips';
 
 // CUSTOM COMPONENTS -------------------------
-@import '../../bower_components/bootstrap-chosen/bootstrap-chosen.scss';
+@import '../../bower_components/bootstrap-chosen/bootstrap-chosen';
+@import 'typeahead';
+@import 'components/flags';
+@import 'layout/helpers';
 // <here> don't remove this comment

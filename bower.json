@@ -2,15 +2,8 @@
   "name": "athena-styleguide-uww",
   "main": "build/css/main.css",
   "ignore": [
-    "assets",
-    "build/css/main.css.map",
     ".*",
-    "gulpfile.js",
     "hologram_config.yml",
-    "README.md",
-    "bower.json",
-    "robots.txt",
-    "package.json"
   ],
   "devDependencies": {
     "html5shiv": "3.7.2",

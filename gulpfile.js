@@ -20,7 +20,8 @@ gulp.task('vendors', function() {
    * CSS VENDORS
    */
   gulp.src([
-        ''
+        'bower_components/font-awesome/css/font-awesome.min.css',
+        'bower_components/chosen/chosen.min.css'
       ])
       .pipe($.concat('vendors.css'))
       .pipe($.minifyCss())
