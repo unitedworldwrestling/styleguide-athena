@@ -3,7 +3,7 @@
   "main": "build/css/main.css",
   "ignore": [
     ".*",
-    "hologram_config.yml",
+    "hologram_config.yml"
   ],
   "devDependencies": {
     "html5shiv": "3.7.2",
