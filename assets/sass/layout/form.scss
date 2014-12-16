@@ -140,7 +140,7 @@ category: Layout - Form
 .form-group {
   .control-label {
     &.required:after {
-      content: "*";
+      content: " *";
       color: red;
     }
   }
