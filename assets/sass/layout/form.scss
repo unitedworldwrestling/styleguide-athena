@@ -137,6 +137,14 @@ category: Layout - Form
 ```
 */
 
+.form-group {
+  .control-label {
+    &.required:after {
+      content: "*";
+      color: red;
+    }
+  }
+}
 
 
 /*doc
