@@ -111,6 +111,17 @@ category: Layout - Form
 ```
 */
 
+.bootstrap-date {
+  & > select {
+    display: inline-block;
+    width: 30%;
+    margin-right: 5%;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
 
 /*doc
 ---
