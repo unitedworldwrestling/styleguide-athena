@@ -52,7 +52,9 @@
     -webkit-background-clip: padding-box;
     -moz-background-clip: padding;
     background-clip: padding-box;
-    width: 236px;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .tt-suggestion {
