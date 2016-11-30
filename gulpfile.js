@@ -21,7 +21,9 @@ gulp.task('vendors', function() {
    */
   gulp.src([
         'bower_components/font-awesome/css/font-awesome.min.css',
-        'bower_components/chosen/chosen.min.css'
+        'bower_components/chosen/chosen.min.css',
+        'bower_components/fullcalendar/dist/fullcalendar.css',
+        'bower_components/cropper/dist/cropper.min.css'
       ])
       .pipe($.concat('vendors.css'))
       .pipe($.minifyCss())
@@ -47,7 +49,13 @@ gulp.task('vendors', function() {
       'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js',
       'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js',
       'bower_components/chosen/chosen.jquery.min.js',
-      'bower_components/typeahead.js/dist/typeahead.bundle.min.js'
+      'bower_components/typeahead.js/dist/typeahead.bundle.min.js',
+      'bower_components/typeahead.js/dist/bloodhound.min.js',
+      'bower_components/moment/min/moment.min.js',
+      'bower_components/fullcalendar/dist/fullcalendar.min.js',
+      'bower_components/canvas-to-Blob.js/canvas-toBlob.js',
+      'bower_components/cropper/dist/cropper.min.js',
+      'bower_components/jsrender/jsrender.min.js',
     ])
     .pipe($.concat('vendors.min.js'))
     .pipe($.uglify())
@@ -94,6 +102,14 @@ gulp.task('vendors', function() {
 gulp.task('img', function() {
   gulp.src([
       'assets/img/**/*'
+    ])
+    .pipe(gulp.dest('build/img'));
+  gulp.src([
+      'bower_components/flag-icon-css/flags/4x3/*.svg'
+    ])
+    .pipe(gulp.dest('build/img/flags'));
+  gulp.src([
+      'img/**/*'
     ])
     .pipe(gulp.dest('build/img'));
 });
