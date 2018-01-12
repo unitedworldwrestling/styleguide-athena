@@ -27,7 +27,7 @@ $(function () {
     // Hack to add a link in the "no result"
     document.addEventListener('click', function(event){
       if(event.target.matches('.chosen-container .no-results a')){
-        event.stopPropagation()
+        event.stopPropagation();
       }
     }, true);
 
@@ -228,6 +228,25 @@ var options = {
       });
     });
   });
+	
+  $('form#crop_media_image').submit(function(){
+    var img = $('#crop-img');
+    var personId = $(img).data('person');
+    var imageId = $(img).data('picture');
+    var type = $(img).data('type');
+    
+    img.cropper('getCroppedCanvas', { width: 315, height: 440 }).toBlob(function (blob) {
+      var formData = new FormData();
+      formData.append('croppedImage', blob);
+      
+      $.ajax(Routing.generate('person_media_images_crop_upload', { person: personId, picture: imageId }), {
+        method: "POST",
+        data: formData,
+        processData: false,
+        contentType: false
+      });
+    });
+  });
 
   $('#person_deceased').change(function() {
     if($(this).prop('checked')) {
@@ -236,5 +255,4 @@ var options = {
       $('#isDeceased').collapse('hide');
     }
   });
-  
 }(jQuery));
