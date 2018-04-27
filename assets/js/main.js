@@ -8,7 +8,7 @@ $(function () {
     $.views.settings.delimiters("<%", "%>");
     
     var chosen = $('[data-type=chosen]');
-    chosen.chosen({ allow_single_deselect: true });
+    chosen.chosen({ allow_single_deselect: true, display_disabled_options: false });
     $('.chosen-results').mouseenter(function () {
       $(this).find('.group-result').click(function () {
         var element = $(this);
