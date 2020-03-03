@@ -135,12 +135,14 @@ $(function () {
       this.form.submit();
     });
 
-
-    $('.order-license-year input[type="radio"]').change(function() {
+    // $('.order-license-year input[type="radio"]').change(function() {
+    $(document).on('change', '.order-license-year input[type="radio"]', function(){
       var $form = $(this).closest('form');
       var data = {};
-      var $selectedRadio = $('.order-license-year input[type="radio"]:checked');
-      data[$selectedRadio.attr('name')] = $selectedRadio.val();
+      var $selectedYearRadio = $('.order-license-year input[type="radio"]:checked');
+      var $selectedAgeRadio = $('.order-license-age input[type="radio"]:checked');
+      data[$selectedYearRadio.attr('name')] = $selectedYearRadio.val();
+      // data[$selectedAgeRadio.attr('name')] = $selectedAgeRadio.val();
       $.ajax({
         url: $form.attr('action'),
         type: $form.attr('method'),
@@ -148,6 +150,31 @@ $(function () {
         success: function(html) {
           $('.order-license-ajax-target').replaceWith(
             $(html).find('.order-license-ajax-target')
+          );
+
+          $('.order-free-license-ajax-target').replaceWith(
+            $(html).find('.order-free-license-ajax-target')
+          );
+        }
+      });
+    });
+
+
+    // $('.order-license-age input[type="radio"]').change(function() {
+    $(document).on('change', '.order-license-age input[type="radio"]', function(){
+      var $form = $(this).closest('form');
+      var data = {};
+      var $selectedYearRadio = $('.order-license-year input[type="radio"]:checked');
+      var $selectedAgeRadio = $('.order-license-age input[type="radio"]:checked');
+      data[$selectedYearRadio.attr('name')] = $selectedYearRadio.val();
+      data[$selectedAgeRadio.attr('name')] = $selectedAgeRadio.val();
+      $.ajax({
+        url: $form.attr('action'),
+        type: $form.attr('method'),
+        data: data,
+        success: function(html) {
+          $('.order-free-license-ajax-target').replaceWith(
+            $(html).find('.order-free-license-ajax-target')
           );
         }
       });
