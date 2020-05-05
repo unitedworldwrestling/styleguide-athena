@@ -142,7 +142,7 @@ $(function () {
       var $selectedYearRadio = $('.order-license-year input[type="radio"]:checked');
       var $selectedAgeRadio = $('.order-license-age input[type="radio"]:checked');
       data[$selectedYearRadio.attr('name')] = $selectedYearRadio.val();
-      // data[$selectedAgeRadio.attr('name')] = $selectedAgeRadio.val();
+      data[$selectedAgeRadio.attr('name')] = $selectedAgeRadio.val();
       $.ajax({
         url: $form.attr('action'),
         type: $form.attr('method'),
