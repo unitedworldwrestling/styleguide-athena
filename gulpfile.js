@@ -56,6 +56,7 @@ gulp.task('vendors', function() {
       'bower_components/canvas-to-Blob.js/canvas-toBlob.js',
       'bower_components/cropper/dist/cropper.min.js',
       'bower_components/jsrender/jsrender.min.js',
+      'bower_components/jquery-tablesort/jquery.tablesort.min.js',
     ])
     .pipe($.concat('vendors.min.js'))
     .pipe($.uglify())
