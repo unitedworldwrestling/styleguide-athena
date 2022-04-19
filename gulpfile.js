@@ -9,7 +9,8 @@ var gulp = require('gulp'),
     reload = browserSync.reload,
     runSequence = require('run-sequence'),
     argv = require('yargs').argv,
-    del = require('del');
+    del = require('del'),
+    gulpSass = require('gulp-sass')(require('sass'));
 
 /**
  * Build vendors dependencies
@@ -26,7 +27,7 @@ gulp.task('vendors', function() {
         'bower_components/cropper/dist/cropper.min.css'
       ])
       .pipe($.concat('vendors.css'))
-      .pipe($.minifyCss())
+      .pipe($.minifyCss({ keepSpecialComments: 1, processImport: false }))
       .pipe(gulp.dest('build/css'));
 
   /**
@@ -68,7 +69,7 @@ gulp.task('vendors', function() {
    * Important to add the bootstrap fonts to avoid issues with the fonts include path
    */
   gulp.src([
-      'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
+      'bower_components/bootstrap-sass-official/assets/fonts/*/*',
       'bower_components/font-awesome/fonts/*',
       'assets/fonts/*'
     ])
@@ -124,7 +125,7 @@ gulp.task('styles', function() {
   if (argv.production) { console.log('[styles] Processing styles for production env.' ); }
   else { console.log('[styles] Processing styles for dev env. No minifying here, for sourcemaps!') }
   return gulp.src('assets/sass/main.scss')
-    .pipe($.rubySass({style: 'compact'}))
+    .pipe(gulpSass({style: 'compressed'}))
       .on('error', $.notify.onError(function (error) {
          console.log(error.message);
          if (!argv.production) {
@@ -136,7 +137,7 @@ gulp.task('styles', function() {
       browsers: ['last 2 versions', 'safari 5', 'ie 8', 'ie 9', 'ff 27', 'opera 12.1'],
       cascade: false
     }))
-    .pipe($.if(argv.production, $.minifyCss()))
+    .pipe($.if(argv.production, $.minifyCss({ keepSpecialComments: 1, processImport: false })))
     // .pipe($.if(!argv.production, $.sourcemaps.write('.')))
     .pipe(gulp.dest('build/css'));
 });

@@ -1,11 +1,12 @@
 // opt-in some bootstrap features
 $(function () {
+    'use strict';
     $('[data-toggle="tooltip"]').tooltip();
 });
 
 (function () {
     'use strict';
-    $.views.settings.delimiters("<%", "%>");
+    $.views.settings.delimiters('<%', '%>');
     
     var chosen = $('[data-type=chosen]');
     chosen.chosen({ allow_single_deselect: true, display_disabled_options: false });
@@ -20,7 +21,7 @@ $(function () {
           options[index].selected = true;
         });
 
-        chosen.trigger("chosen:updated");
+        chosen.trigger('chosen:updated');
       });
     });
 
@@ -54,7 +55,7 @@ $(function () {
         }
       }
     );
-    searchBox.bind('typeahead:selected', function (event, value, dataset) {
+    searchBox.bind('typeahead:selected', function (event, value/*, dataset*/) {
       location.href = Routing.generate(value.route, { id: value.id });
     });
 
@@ -83,7 +84,7 @@ $(function () {
       }
     );
     
-    personAutocomplete.bind('typeahead:selected', function (event, value, dataset) {
+    personAutocomplete.bind('typeahead:selected', function (event, value/*, dataset*/) {
       personInput.val(value.id);
     });
 
@@ -113,7 +114,7 @@ $(function () {
           }
         }
       );
-      participantsSearch.bind('typeahead:selected', function (event, value, dataset) {
+      participantsSearch.bind('typeahead:selected', function (event, value/*, dataset*/) {
         participantsSearchId.val(value.id);
       });
     }
@@ -126,7 +127,7 @@ $(function () {
 
       control.click(function () {
         target.find('option').attr('selected', false);
-        target.trigger("chosen:updated");
+        target.trigger('chosen:updated');
       });
     });
 
@@ -188,10 +189,10 @@ $(function () {
   var $bankInfos = $('.js-bank-infos');
   var $paymentOptions = $('.js-payment-form input[type=radio]');
 
-  $paymentOptions.on('change', function(e) {
+  $paymentOptions.on('change', function() {
     var value = $(this).val();
     // choose bank transfer
-    if ('2' == value) {
+    if ('2' === value) {
       $bankInfos.removeClass('hide');
       $('#invoice-price').show();
       $('#credit-card-price').hide();
@@ -208,7 +209,8 @@ $(function () {
 
 // Preview passport pdf - one modal, one iframe and dynamic content
 (function($){
-    $(".js-modal-file-preview").on('show.bs.modal', function (event) {
+    'use strict';
+    $('.js-modal-file-preview').on('show.bs.modal', function (event) {
         var link = $(event.relatedTarget);
         var url = link.data('download');
         var title = link.data('title');
@@ -221,8 +223,9 @@ $(function () {
 
 // Manage pdf preview modal height
 (function($){
-  if ($("#js-pdf-preview").length !== 0) {
-    $("#js-pdf-preview").height(($(window).height()) - 280);
+    'use strict';
+  if ($('#js-pdf-preview').length !== 0) {
+    $('#js-pdf-preview').height(($(window).height()) - 280);
   }
 }(jQuery));
 
@@ -230,6 +233,7 @@ var options = {
   
 };
 (function($){
+  'use strict';
   $('#crop-img').cropper({
     viewMode: 1,
     //preview: '.crop-preview',
@@ -241,14 +245,14 @@ var options = {
     
     var personId = $(img).data('person');
     var imageId = $(img).data('picture');
-    var type = $(img).data('type');
+//    var type = $(img).data('type');
 
     img.cropper('getCroppedCanvas', { width: 315, height: 440 }).toBlob(function (blob) {
       var formData = new FormData();
       formData.append('croppedImage', blob);
 
       $.ajax(Routing.generate('person_images_crop_upload', { person: personId, picture: imageId }), {
-        method: "POST",
+        method: 'POST',
         data: formData,
         processData: false,
         contentType: false
