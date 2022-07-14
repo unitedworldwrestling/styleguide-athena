@@ -19,6 +19,7 @@
     "flag-icon-css": "~0.8.5",
     "canvas-to-Blob.js": "*",
     "cropper": "^2.3.4",
-    "jsrender": "^0.9.83"
+    "jsrender": "^0.9.83",
+    "jquery-tablesort": "0.0.11"
   }
 }
