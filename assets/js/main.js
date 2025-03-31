@@ -148,13 +148,13 @@ $(function () {
         url: $form.attr('action'),
         type: $form.attr('method'),
         data: data,
-        success: function(html) {
+        complete: function(jqXHR) {
           $('.order-license-ajax-target').replaceWith(
-            $(html).find('.order-license-ajax-target')
+            $(jqXHR.responseText).find('.order-license-ajax-target')
           );
 
           $('.order-free-license-ajax-target').replaceWith(
-            $(html).find('.order-free-license-ajax-target')
+            $(jqXHR.responseText).find('.order-free-license-ajax-target')
           );
         }
       });
@@ -173,9 +173,9 @@ $(function () {
         url: $form.attr('action'),
         type: $form.attr('method'),
         data: data,
-        success: function(html) {
+        complete: function(jqXHR) {
           $('.order-free-license-ajax-target').replaceWith(
-            $(html).find('.order-free-license-ajax-target')
+            $(jqXHR.responseText).find('.order-free-license-ajax-target')
           );
         }
       });
