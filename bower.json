@@ -13,7 +13,7 @@
     "jquery": "~2.1.1",
     "font-awesome": "^4.7.0",
     "typeahead.js": "^0.11.1",
-    "bootstrap-chosen": "~1.0.1",
+    "bootstrap-chosen": "./bower_local/bootstrap-chosen",
     "chosen": "~1.4.2",
     "fullcalendar": "~2.3.2",
     "flag-icon-css": "~0.8.5",

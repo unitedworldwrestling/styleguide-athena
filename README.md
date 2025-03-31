@@ -2,7 +2,16 @@
 
 ### Install the styleguide
 
+The easiest way to setup the environment is to use Docker
 ```bash
+docker run -it -v ./:/app node:10-alpine ash
+```
+
+
+```bash
+# if running in docker, you must install git command
+# $ apk update && apk install git
+
 $ npm install
 $ bower install
 $ gulp
