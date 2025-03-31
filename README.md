@@ -10,7 +10,7 @@ docker run -it -v ./:/app node:10-alpine ash
 
 ```bash
 # if running in docker, you must install git command
-# $ apk update && apk install git
+# $ apk update && apk add git
 
 $ npm install
 $ bower install
