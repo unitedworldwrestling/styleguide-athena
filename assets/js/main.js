@@ -240,9 +240,10 @@ var options = {
     aspectRatio: 5 / 7,
   });
 
-  $('form#crop_image').submit(function(){
+  $('form#crop_image').submit(function(event){
+    event.preventDefault();
     var img = $('#crop-img');
-    
+    var form = $(this);
     var personId = $(img).data('person');
     var imageId = $(img).data('picture');
 //    var type = $(img).data('type');
@@ -256,6 +257,11 @@ var options = {
         data: formData,
         processData: false,
         contentType: false
+      }).done(function () {
+        form[0].submit();
+      }).fail(function () {
+        alert('Crop failed. Please try again.');
+        form[0].submit();
       });
     });
   });
