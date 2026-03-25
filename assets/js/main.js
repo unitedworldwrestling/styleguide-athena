@@ -242,6 +242,7 @@ var options = {
 
   $('form#crop_image').submit(function(event){
     event.preventDefault();
+    var submitBtn = event.originalEvent.submitter;
     var img = $('#crop-img');
     var form = $(this);
     var personId = $(img).data('person');
@@ -258,10 +259,14 @@ var options = {
         processData: false,
         contentType: false
       }).done(function () {
+        var hidden = $('<input>', { type: 'hidden', name: submitBtn.name, value: submitBtn.value }).appendTo(form);
         form[0].submit();
+        hidden.remove();
       }).fail(function () {
-        alert('Crop failed. Please try again.');
+        console.log('Crop failed. Please try again.');
+        var hidden = $('<input>', { type: 'hidden', name: submitBtn.name, value: submitBtn.value }).appendTo(form);
         form[0].submit();
+        hidden.remove();
       });
     });
   });
